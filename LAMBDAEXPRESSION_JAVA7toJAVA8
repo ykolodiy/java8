@@ -1,0 +1,11 @@
+lambda expression can be assigned to a variable
+
+
+aMaVariableinJAVA7 = public void perform () {System.out.println("hello");}
+
+no need public cos its belong to function what has that code
+no need perform coz variable is the name
+no need void java can figure out looking at code
+need to put "->" btw () and {}
+
+aMaVariableinJAVA8 =                            () -> {System.out.println("hello");}
