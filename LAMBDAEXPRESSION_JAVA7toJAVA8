@@ -9,3 +9,9 @@ no need void java can figure out looking at code
 need to put "->" btw () and {}
 
 aMaVariableinJAVA8 =                            () -> {System.out.println("hello");}
+
+
+
+if its just 1 line u can remove {}
+
+aMaVariableinJAVA8 =                            () -> System.out.println("hello");
