@@ -15,3 +15,12 @@ aMaVariableinJAVA8 =                            () -> {System.out.println("hello
 if its just 1 line u can remove {}
 
 aMaVariableinJAVA8 =                            () -> System.out.println("hello");
+
+
+
+have arguments?
+
+doubleNfunct7 = public int doubleeee(int a ) {return a*2;}
+doubleNfunct8 = (int a ) -> return a*2;
+if its just 1 line and removed {} u must skip return
+doubleNfunct8 = (int a ) -> a*2;
