@@ -1,0 +1,17 @@
+CMDinJAVA
+
+  @Test
+  public void f() {
+	  
+	  
+	 
+	  
+	  try {
+          String[] command = {"cmd.exe", "/c", "Start", "C:\\Users\\vkoloyu\\del.bat"};
+          Process p =  Runtime.getRuntime().exec(command);           
+      } catch (IOException ex) {
+      }
+	  
+	  
+	  
+  }
