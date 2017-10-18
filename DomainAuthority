@@ -1,0 +1,58 @@
+package office;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class DomainAuthority {
+	 public static void main(String[] args) {
+
+	        URL url;
+
+	        try {
+	            // get URL content
+/*
+ * 
+ * moz.com > http://moz.com/api > get keys free
+
+Access ID mozscape-e92f2ae771
+Secret Key fc3f2ac2e3e23f5b7000a6160c877627
+
+ */
+	        	
+	        	// http://lsapi.seomoz.com/linkscape/url-metrics/www.pearsonschool.com?Cols=103079215108&AccessID=mozscape-e92f2ae771&Expires=&Signature=fc3f2ac2e3e23f5b7000a6160c877627
+	        	
+	        	
+	        	
+	        	// compile javac DomainAuthority.java > DomainAuthority.class created
+	        	// go 1 folder back cd ..   out of package
+	        	// run java office.DomainAuthority
+	        	// build periodically 0 0 1 * *       mean every 1 day of the month
+	        	
+	            String a="http://alloamerica.us/molotov/moz.php";
+	            url = new URL(a);
+	            URLConnection conn = url.openConnection();
+
+	            // open the stream and put it into BufferedReader
+	            BufferedReader br = new BufferedReader(
+	                               new InputStreamReader(conn.getInputStream()));
+
+	            String inputLine;
+	            while ((inputLine = br.readLine()) != null) {
+	                    System.out.println(inputLine);
+	            }
+	            br.close();
+
+	           
+
+	        } catch (MalformedURLException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+
+	    }
+	}
