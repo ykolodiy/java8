@@ -23,7 +23,8 @@ Secret Key fc3f2ac2e3e23f5b7000a6160c877627
 
  */
 	        	
-	        	// http://lsapi.seomoz.com/linkscape/url-metrics/www.pearsonschool.com?Cols=103079215108&AccessID=mozscape-e92f2ae771&Expires=&Signature=fc3f2ac2e3e23f5b7000a6160c877627
+	        	// this url doesnt work because access key is hashed using secret key ha. php in moz.php hash it and send everytipe another url to moz api servers
+			//http://lsapi.seomoz.com/linkscape/url-metrics/www.pearsonschool.com?Cols=103079215108&AccessID=mozscape-e92f2ae771&Expires=&Signature=fc3f2ac2e3e23f5b7000a6160c877627
 	        	
 	        	
 	        	
