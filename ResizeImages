@@ -1,0 +1,110 @@
+package playground;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
+import org.apache.commons.lang3.StringUtils;
+
+public class getlistoffiles {
+
+	public static void main(String[] args) throws Exception {
+		//listf("C:\\Users\\vkoloyu\\Downloads\\alloam\\public_html\\wp-content\\uploads\\test");
+// populate the array with list if files
+		List<File>  r = listf("C:\\Users\\vkoloyu\\Downloads\\alloam\\public_html\\wp-content\\uploads\\test");
+		
+		for (int i = 0; i < r.size(); i++) {
+			if(r.get(i).isFile())
+			{
+		    // System.out.println(r.get(i));
+		     
+		     
+		    String s = r.get(i).getAbsolutePath();
+		    
+		    System.out.println(s);
+		    String tri = StringUtils.right(s, 3);
+		    //System.out.println(tri);
+		    
+		    
+		    
+		   if (r.get(i).length() > 1000 && !s.contains("x"))
+		   {
+		  
+		     BufferedImage image = ImageIO.read(r.get(i));
+		   
+		     BufferedImage resized = resize(image, 500, 500);
+
+		     
+		     // need this staff to avoid red background https://stackoverflow.com/questions/17755036/imgscalr-with-background-red
+		     BufferedImage imageToSave = new BufferedImage(resized.getWidth(), resized.getHeight(), BufferedImage.TYPE_INT_RGB);
+		     Graphics g = imageToSave.getGraphics();
+		     g.drawImage(resized, 0, 0, null);
+		     
+		     
+
+		        File output = new File(s.substring(0, s.length() - 4)+"."+tri);
+		        ImageIO.write(imageToSave, tri, output);
+		     
+		   }
+		   else {r.get(i).delete();}
+		     
+		   
+		   
+		   
+		   
+			}
+		}
+		
+		
+		//System.out.println(getlistoffiles.listf("C:\\Users\\vkoloyu\\Downloads\\alloam\\public_html\\wp-content\\uploads\\test"));
+		
+	
+	}
+// get all list of files in folder and subfolders
+	
+	   public static List<File> listf(String directoryName) {
+	        File directory = new File(directoryName);
+
+	        List<File>  resultList = new ArrayList<File>();
+
+	        // get all the files from a directory
+	        File[] fList = directory.listFiles();
+	        resultList.addAll(Arrays.asList(fList));
+	        for (File file : fList) {
+	            if (file.isFile()) {
+	            	
+	               //System.out.println(file.getAbsolutePath()+">B>"+file.length());
+	            	
+	            } else if (file.isDirectory()) {
+	                resultList.addAll(listf(file.getAbsolutePath()));
+	            }
+	        }
+	        //System.out.println(fList);
+	        return resultList;
+	    } 
+	   
+	   
+	   //resize
+	    private static BufferedImage resize(BufferedImage img, int height, int width) {
+	        Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+	        BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+	        Graphics2D g2d = resized.createGraphics();
+	        g2d.drawImage(tmp, 0, 0, null);
+	        g2d.dispose();
+	        return resized;
+	    }
+
+	   
+	   
+	   
+	   
+	
+}
