@@ -1,0 +1,14 @@
+
+/* c:\user>set classpath=%classpath%;C:\Users\vkoloyu\jars\mail.jar;
+or
+Download javax.mail.jar and add it to your project using the following steps:
+
+Extract the mail.jar file
+Right click the project node (JavaMail), click Properties to change properties of the project
+Now go to Libraries Tab
+Click on Add JAR/Folder Button. A window opens up.
+Browse to the location where you have unzipped your Mail.jar
+Press ok
+Compile your program to check whether the JAR files have been successfully included
+
+*/
