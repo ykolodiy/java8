@@ -1,0 +1,6 @@
+include framework jars in one place: /you can add it to any projects/:
+
+0 Download framework jars
+
+1 right click > Properties > Java built Path > Libraries > Add Library > User Library > Next > User Libtraires ... > nameit > ok
+2 add jars to this library > the same window from 1 > Add jars > Select all jars from where you have them > Finish
