@@ -1,0 +1,47 @@
+package sharepoint;
+
+import java.util.Vector;
+
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.ChannelSftp.LsEntry;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpException;
+
+public class connectFTPserver {
+
+	  public static void main(String args[]) {
+	        JSch jsch = new JSch();
+	        Session session = null;
+	        try {
+	            session = jsch.getSession("login", "127.0.0.1", 22);
+	            session.setConfig("StrictHostKeyChecking", "no");
+	            session.setPassword("");
+	            session.connect();
+
+	            Channel channel = session.openChannel("sftp");
+	            channel.connect();
+	            ChannelSftp sftpChannel = (ChannelSftp) channel;
+	            
+	            
+	            sftpChannel.cd("/home/acer");
+	            Vector filelist = sftpChannel.ls("/home/acer");
+	            for(int i=0; i<filelist.size();i++){
+	                LsEntry entry = (LsEntry) filelist.get(i);
+	                System.out.println(entry.getFilename());
+	            }
+	            
+	            
+	            
+	            
+	            sftpChannel.exit();
+	            session.disconnect();
+	        } catch (JSchException e) {
+	            e.printStackTrace();  
+	        } catch (SftpException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
