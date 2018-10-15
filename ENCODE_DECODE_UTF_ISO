@@ -1,0 +1,39 @@
+package sharepoint;
+//CP iso-8859-1 to url valid utf-8
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
+import org.apache.commons.io.FilenameUtils;
+
+import com.google.common.net.UrlEscapers;
+
+public class ISOtoUTF {
+
+	public static void main(String[] args) throws UnsupportedEncodingException, MalformedURLException, URISyntaxException {
+		//CONVERT ISO TO UTF
+		String encodedWithISO88591 = "teams.inside.pearson.com/sch2/sim/p/sci/intersci2012/Comparison between IS from K-5 2012Â© to Â©2016.pdf";
+		String decodedToUTF8 = new String(encodedWithISO88591.getBytes("ISO-8859-1"), "UTF-8");
+		
+		System.out.println(decodedToUTF8);
+		
+		
+		
+		// DECODE URL    convert CP encoded url to plain text
+		
+		//URL url = new URL(java.net.URLDecoder.decode("http://teams.inside.pearson.com/sch2/sim/p/pd/pd/Programs/ELL,%20SIOP,%20ARISE/A+RISE%20(ID80121_ID80141)/Secondary%20(ID80141)/Agenda/ELL_ARISE_TrainingTeachersK-12.pdf", "UTF-8"));
+		URL url = new URL("http://teams.inside.pearson.com/sch2/sim/p/sci/intersci2012/Comparison%20between%20IS%20from%20K-5%202012%C2%A9%20to%20%C2%A92016.pdf");
+		
+		System.out.println(url.toURI().getPath());
+		
+		// ENCODE URL
+		String us = "teams.inside.pearson.com/sch2/sim/p/sci/intersci2012/Comparison between IS from K-5 2012© to ©2016.pdf";
+		System.out.println(UrlEscapers.urlFragmentEscaper().escape(us));
+		
+		
+	}
+
+}
