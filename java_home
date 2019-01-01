@@ -1,0 +1,10 @@
+JAVA_HOME="/usr/lib/jvm/java-8-oracle"
+
+nano
+/etc/enviroment 
+/etc/profile 
+/etc/bash.bashrc 
+~/.bashrc       >>>>>  /usr/lib/jvm/java-8-oracle
+~/.bash_profile
+
+source ~/.bash_profile
