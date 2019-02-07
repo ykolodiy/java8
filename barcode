@@ -1,0 +1,50 @@
+1 maven pom
+<dependency>
+    <groupId>com.google.zxing</groupId>
+    <artifactId>core</artifactId>
+    <version>3.3.3</version>
+</dependency>
+   
+<dependency>
+    <groupId>com.google.zxing</groupId>
+    <artifactId>javase</artifactId>
+    <version>3.3.3</version>
+</dependency>
+
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+</dependency>
+
+
+2 class
+    //WRITE BAR CODE
+        String text = "98376373783"; // this is the text that we want to encode  
+        
+        int width = 400;  
+        int height = 300; // change the height and width as per your requirement  
+          
+        // (ImageIO.getWriterFormatNames() returns a list of supported formats)  
+        String imageFormat = "png"; // could be "gif", "tiff", "jpeg"   
+          
+        BitMatrix bitMatrix = new QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, width, height);  
+        MatrixToImageWriter.writeToStream(bitMatrix, imageFormat, new FileOutputStream(new File("qrcode_97802017507991.png"))); 
+    
+    /*
+     * 
+     * READ BAR CODE
+     * InputStream barCodeInputStream = new FileInputStream("file.jpg");  
+BufferedImage barCodeBufferedImage = ImageIO.read(barCodeInputStream);  
+  
+LuminanceSource source = new BufferedImageLuminanceSource(barCodeBufferedImage);  
+BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));  
+Reader reader = new MultiFormatReader();  
+Result result = reader.decode(bitmap);  
+  
+System.out.println("Barcode text is " + result.getText());  
+     * 
+     * 
+     * 
+     * */
