@@ -1,0 +1,8 @@
+		 extract # from url
+     
+     
+     Pattern p = Pattern.compile("pricelevelid=([0-9]+)");
+	        Matcher m = p.matcher("http://priceleveldetails;pricelevelid=80269;location=0");
+	        while(m.find()) {
+	            System.out.println(m.group(1));
+	        }
