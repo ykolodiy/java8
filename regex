@@ -6,3 +6,14 @@
 	        while(m.find()) {
 	            System.out.println(m.group(1));
 	        }
+
+
+
+
+
+		 Pattern p = Pattern.compile("(?<=pricelevelid=)\\d+");
+	        Matcher m = p.matcher("http://10.181.243.17/fvcatalog/#/pricing/priceleveldetails;pricelevelid=80269;location=0");
+	        while(m.find()) {
+	            System.out.println(m.group());
+	            //return m.group(1);
+	        }
