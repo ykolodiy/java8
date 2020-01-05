@@ -3,8 +3,11 @@ import java.util.Properties;
  
 import javax.mail.Folder;
 import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.Store;
+import javax.mail.internet.MimeMultipart;
  
 public class ReceiveMAIL {
  
@@ -34,7 +37,7 @@ public class ReceiveMAIL {
             Session session = Session.getDefaultInstance(prop, null);
  
             Store store = session.getStore("imaps");
-            store.connect("smtp.gmail.com", "xxxxx@gmail.com", "xxxxxx");
+            store.connect("smtp.gmail.com", "xxxxx@gmail.com", "xxxxxxxxx");
  
             Folder inbox = store.getFolder("inbox");
             inbox.open(Folder.READ_ONLY);
@@ -48,9 +51,28 @@ public class ReceiveMAIL {
             // most recent email
                 
                 System.out.println("From:- " + messages[messages.length-1].getFrom()[0].toString());
-                System.out.println("Mail Subject:- " + messages[messages.length-1].getSubject() );
+                System.out.println("Subject:- " + messages[messages.length-1].getSubject() );
                 System.out.println("Date:- " + messages[messages.length-1].getSentDate().toString());
-                System.out.println("Content:- " + messages[messages.length-1].getContent());
+                
+                Object content =  messages[messages.length-1].getContent();
+                
+                if (content instanceof Multipart) {
+                	StringBuffer messageContent = new StringBuffer();
+                    Multipart multipart = (Multipart) content;
+                    
+                    for (int i = 0; i < multipart.getCount(); i++) {
+                        Part part = multipart.getBodyPart(i);
+                        if (part.isMimeType("text/plain")) {
+                            messageContent.append(part.getContent().toString());
+                        }
+                    }
+                    System.out.println("Content:- " + messageContent.toString());
+                	
+                }
+                else {
+                	System.out.println("Content:- " + messages[messages.length-1].getContent().toString());
+                }
+
  
             inbox.close(true);
             store.close();
