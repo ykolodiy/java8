@@ -1,0 +1,62 @@
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Properties;
+ 
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Store;
+ 
+public class ReceiveMAIL {
+ 
+    public static void main(String[] args) {
+ 
+    	ReceiveMAIL gmail = new ReceiveMAIL();
+        gmail.read();
+ 
+    }
+ 
+    public void read() {
+ 
+        
+ 
+        try {
+        	
+        	
+        	 Properties prop = new Properties();
+     		prop.put("mail.smtp.host", "smtp.gmail.com");
+             prop.put("mail.smtp.port", "465");
+             prop.put("mail.smtp.auth", "true");
+             prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); 
+             prop.put("mail.smtp.socketFactory.port", "465"); 
+        
+        	
+      
+            Session session = Session.getDefaultInstance(prop, null);
+ 
+            Store store = session.getStore("imaps");
+            store.connect("smtp.gmail.com", "xxxxxx@gmail.com", "xxxxxxx");
+ 
+            Folder inbox = store.getFolder("inbox");
+            inbox.open(Folder.READ_ONLY);
+            int messageCount = inbox.getMessageCount();
+ 
+            System.out.println("Total Messages:- " + messageCount);
+ 
+            Message[] messages = inbox.getMessages();
+            System.out.println("------------------------------");
+ 
+            for (int i = 0; i < 6; i++) {
+                System.out.println("Mail Subject:- " + messages[i].getSubject() +  messages[i].getMessageNumber());
+            }
+ 
+            inbox.close(true);
+            store.close();
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
+}
